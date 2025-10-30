@@ -44,7 +44,6 @@ ALTER TABLE medico
 
 ALTER TABLE medico DROP COLUMN especialidade;
 
-
 SELECT
     m.pessoa_id ,
     p.nome AS nome_medico,
@@ -84,12 +83,14 @@ SELECT * FROM consulta;
 INSERT INTO consulta(paciente_id, medico_id, data_consulta, observacoes)
 VALUES(4, 16, '2025-01-10 09:00:00', 'Muita fome');
 
+-- medico sem consulta
 SELECT p.nome, m.crm
 FROM medico m
 JOIN pessoa p ON m.pessoa_id = p.id
 LEFT JOIN consulta c ON m.pessoa_id = c.medico_id
 WHERE c.id IS NULL;
 
+-- paciente sem consulta
 SELECT p.nome, m.numero_cartao
 FROM paciente m
 JOIN pessoa p ON m.pessoa_id = p.id
